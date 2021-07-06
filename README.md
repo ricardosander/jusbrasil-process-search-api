@@ -36,6 +36,8 @@ Aqui, a regra mais importante a ser seguida é a regra da dependência, que diz 
 
 main -> adapter -> application -> domain
 
+![Project Architecture as Clean Code](architecture.png)
+
 ## Implementação
 
 ### Padrão CNJ para Numeração de Processos Jurídicos: Numeração Única de Processos
