@@ -5,6 +5,12 @@
 - implementação do [Desafio Backend Enginner - Jusbrasil](https://gist.github.com/tarsisazevedo/966d469e8a80741334d3c4dce66cbea5);
 - criar um repositório de exemplo com implementação de [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) em Java;
 - praticar os princípios de TDD, conforme proposto pelo Robert C. Martin [nessa palestra](https://www.youtube.com/watch?v=58jGpV2Cg50&list=PLJxaxbiDu_CIDjGndHcoXrg-ockNem27L&index=6&t=1300s&ab_channel=UnityCoin);
+- criar um repositório fácil de rodar, com criação de imagem Docker e Docker Compose, permitindo subir o serviço com cache local ou distribuído;
+
+## Tecnologias
+- Java 11
+- Maven
+- Docker
 
 ## Arquitetura
 
