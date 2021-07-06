@@ -14,7 +14,7 @@
 
 ## Arquitetura
 
-O uso de arquitetura limpa (Clean Architecture) ajuradaria em diversos aspectos:
+O uso de arquitetura limpa (Clean Architecture) ajudaria em diversos aspectos:
 
 - ajuda no desenvolvimento de classes mais desacopladas e mais testáveis;
 - ajudaria a separar os detalhes de implementação, como o funcionamento dos crawlers, que são detalhes complexos de baixo nível;
