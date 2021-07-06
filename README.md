@@ -38,6 +38,14 @@ main -> adapter -> application -> domain
 
 ![Project Architecture as Clean Code](architecture.png)
 
+A camada mais interna, em amarelo, é a camada de domínio (domain) e é onde estarão as entidades e regras de negócio. Exemplos são as classes que representam um número de processo (Numeração ùnica de Processos) e todas as classes envolvidas na sua validação.
+
+A camada intermediária, em vermelho, é a camada de aplicação (application) e é responsável pelo fluxo das informações. Ela será chamada pela camada externa (um controller, da camada web, por exemplo) e fará as validações e conversões para o número do processo (conforme Numeração Única de Processos), realizará a requisição para o gateway (interface) que busca o pocesso e retorna esses valores para a camada que inicou o processo. Aqui também estará o gateway mencionado, que define uma interface para busca de processos baseado na Numeração Única de Processos.
+
+A camada externa, em verde, representa os adapters. Aqui estarão presentes todas as implementações de mais baixo nível, responsáveis por interações ou bibliotecas externas. Teremos uma implementação para busca do processo via crawler (talvez uma para cada tribunal), teremos uma implementação que fará cacheamento e teremos a entrada via camada web.
+
+A camada main, não representada no diagrama, será responsável pelas configurações do serviço, como framework (Spring), cache e startup da aplicação.
+
 ## Implementação
 
 ### Padrão CNJ para Numeração de Processos Jurídicos: Numeração Única de Processos
