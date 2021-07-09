@@ -31,4 +31,13 @@ class RetrieveProcessUseCaseTest {
         assertThatExceptionOfType(RetrieveProcessUseCase.InvalidUniqueProcessNumberingException.class)
                 .isThrownBy(() -> retrieveProcessUseCase.execute(uniqueProcessNumbering));
     }
+
+    @Test
+    void shouldThrowsInvalidUniqueProcessNumberingException_whenSpaceUniqueProcessNumberingIsGiven() {
+
+        String uniqueProcessNumbering = " ";
+
+        assertThatExceptionOfType(RetrieveProcessUseCase.InvalidUniqueProcessNumberingException.class)
+                .isThrownBy(() -> retrieveProcessUseCase.execute(uniqueProcessNumbering));
+    }
 }
