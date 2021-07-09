@@ -11,10 +11,12 @@ class RetrieveProcessUseCase {
     }
 
     public Optional<Process> execute(String uniqueProcessNumbering) {
-        if (uniqueProcessNumbering == null || uniqueProcessNumbering.trim().isEmpty()) {
+        if (isInvalid(uniqueProcessNumbering))
             throw new InvalidUniqueProcessNumberingException(uniqueProcessNumbering);
-        }
-
         return retrieveProcessGateway.execute(uniqueProcessNumbering);
+    }
+
+    private boolean isInvalid(String uniqueProcessNumbering) {
+        return uniqueProcessNumbering == null || uniqueProcessNumbering.trim().isEmpty();
     }
 }
