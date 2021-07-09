@@ -8,6 +8,7 @@ class RetrieveProcessUseCaseTest {
 
     @Test
     void test() {
+        new RetrieveProcessUseCase();
         assertTrue(true);
     }
 }
