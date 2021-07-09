@@ -16,9 +16,9 @@ class RetrieveProcessUseCaseTest {
     @BeforeEach
     void setUp() {
 
-        Map<String, RetrieveProcessUseCase.Process> processes = createProcesses();
+        Map<String, Process> processes = createProcesses();
 
-        RetrieveProcessUseCase.RetrieveProcessGateway retrieveProcessGateway = uniqueProcessNumbering ->
+        RetrieveProcessGateway retrieveProcessGateway = uniqueProcessNumbering ->
                 Optional.ofNullable(processes.get(uniqueProcessNumbering));
 
         retrieveProcessUseCase = new RetrieveProcessUseCase(retrieveProcessGateway);
@@ -29,7 +29,7 @@ class RetrieveProcessUseCaseTest {
 
         String uniqueProcessNumbering = "07108025520188020001";
 
-        Optional<RetrieveProcessUseCase.Process> process = retrieveProcessUseCase.execute(uniqueProcessNumbering);
+        Optional<Process> process = retrieveProcessUseCase.execute(uniqueProcessNumbering);
 
         assertThat(process).isPresent();
         assertThat(process.get().getId()).isEqualTo(uniqueProcessNumbering);
@@ -48,7 +48,7 @@ class RetrieveProcessUseCaseTest {
 
         String uniqueProcessNumbering = "08219015120188120001";
 
-        Optional<RetrieveProcessUseCase.Process> process = retrieveProcessUseCase.execute(uniqueProcessNumbering);
+        Optional<Process> process = retrieveProcessUseCase.execute(uniqueProcessNumbering);
 
         assertThat(process).isPresent();
         assertThat(process.get().getId()).isEqualTo(uniqueProcessNumbering);
@@ -67,7 +67,7 @@ class RetrieveProcessUseCaseTest {
 
         String uniqueProcessNumbering = null;
 
-        assertThatExceptionOfType(RetrieveProcessUseCase.InvalidUniqueProcessNumberingException.class)
+        assertThatExceptionOfType(InvalidUniqueProcessNumberingException.class)
                 .isThrownBy(() -> retrieveProcessUseCase.execute(uniqueProcessNumbering));
     }
 
@@ -76,7 +76,7 @@ class RetrieveProcessUseCaseTest {
 
         String uniqueProcessNumbering = "";
 
-        assertThatExceptionOfType(RetrieveProcessUseCase.InvalidUniqueProcessNumberingException.class)
+        assertThatExceptionOfType(InvalidUniqueProcessNumberingException.class)
                 .isThrownBy(() -> retrieveProcessUseCase.execute(uniqueProcessNumbering));
     }
 
@@ -85,11 +85,11 @@ class RetrieveProcessUseCaseTest {
 
         String uniqueProcessNumbering = " ";
 
-        assertThatExceptionOfType(RetrieveProcessUseCase.InvalidUniqueProcessNumberingException.class)
+        assertThatExceptionOfType(InvalidUniqueProcessNumberingException.class)
                 .isThrownBy(() -> retrieveProcessUseCase.execute(uniqueProcessNumbering));
     }
 
-    private Map<String, RetrieveProcessUseCase.Process> createProcesses() {
+    private Map<String, Process> createProcesses() {
         return Map.of(
                 "07108025520188020001", createProcess(
                         "07108025520188020001",
@@ -122,7 +122,7 @@ class RetrieveProcessUseCaseTest {
         );
     }
 
-    private RetrieveProcessUseCase.Process createProcess(
+    private Process createProcess(
             String id,
             String subject,
             String distributionDate,
@@ -131,7 +131,7 @@ class RetrieveProcessUseCaseTest {
             String processParts,
             String movements
     ) {
-        return new RetrieveProcessUseCase.Process(
+        return new Process(
                 id,
                 "Procedimento Comum Cível",
                 "Cível",
