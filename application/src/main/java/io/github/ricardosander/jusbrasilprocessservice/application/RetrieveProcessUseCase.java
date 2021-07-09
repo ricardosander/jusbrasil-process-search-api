@@ -4,20 +4,42 @@ import java.util.Optional;
 
 public class RetrieveProcessUseCase {
 
+    private final RetrieveProcessGateway retrieveProcessGateway;
+
+    public RetrieveProcessUseCase(RetrieveProcessGateway retrieveProcessGateway) {
+        this.retrieveProcessGateway = retrieveProcessGateway;
+    }
+
     public Optional<Process> execute(String uniqueProcessNumbering) {
         if (uniqueProcessNumbering == null || uniqueProcessNumbering.trim().isEmpty()) {
             throw new InvalidUniqueProcessNumberingException(uniqueProcessNumbering);
         }
 
-        return Optional.of(new Process(uniqueProcessNumbering));
+        return retrieveProcessGateway.execute(uniqueProcessNumbering);
     }
 
     static class Process {
 
         private final String id;
+        private final String clazz;
+        private final String area;
+        private final String subject;
+        private final String distributionDate;
+        private final String judge;
+        private final String shareValue;
+        private final String processParts;
+        private final String movements;
 
-        Process(String id) {
+        public Process(String id, String clazz, String area, String subject, String distributionDate, String judge, String shareValue, String processParts, String movements) {
             this.id = id;
+            this.clazz = clazz;
+            this.area = area;
+            this.subject = subject;
+            this.distributionDate = distributionDate;
+            this.judge = judge;
+            this.shareValue = shareValue;
+            this.processParts = processParts;
+            this.movements = movements;
         }
 
         public String getId() {
@@ -25,35 +47,35 @@ public class RetrieveProcessUseCase {
         }
 
         public String getClazz() {
-            return "Procedimento Comum Cível";
+            return clazz;
         }
 
         public String getArea() {
-            return "Cível";
+            return area;
         }
 
         public String getSubject() {
-            return "Dano Material";
+            return subject;
         }
 
         public String getDistributionDate() {
-            return "02/05/2018 às 19:01 - Sorteio";
+            return distributionDate;
         }
 
         public String getJudge() {
-            return "José Cícero Alves da Silva";
+            return judge;
         }
 
         public String getShareValue() {
-            return "R$ 281.178,42";
+            return shareValue;
         }
 
         public String getProcessParts() {
-            return "Autor: José Carlos Cerqueira Souza Filho\nAdvogado:  Vinicius Faria de Cerqueira\nRé: Cony Engenharia Ltda.\nAdvogado:  Carlos Henrique de Mendonça Brandão\nAdvogado:  Guilherme Freire Furtado\nAdvogada:  Maria Eugênia Barreiros de Mello\nAdvogado:  Vítor Reis de Araujo Carvalho";
+            return processParts;
         }
 
         public String getMovements() {
-            return "22/02/2021 - Remetido recurso eletrônico ao Tribunal de Justiça/Turma de recurso";
+            return movements;
         }
     }
 
@@ -62,5 +84,9 @@ public class RetrieveProcessUseCase {
         public InvalidUniqueProcessNumberingException(String uniqueProcessNumbering) {
             super(String.format("%s is a invalid Unique Process Numbering.", uniqueProcessNumbering));
         }
+    }
+
+    interface RetrieveProcessGateway {
+        Optional<Process> execute(String uniqueProcessNumbering);
     }
 }
