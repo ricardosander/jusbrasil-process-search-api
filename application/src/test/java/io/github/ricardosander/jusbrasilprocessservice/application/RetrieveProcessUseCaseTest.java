@@ -2,13 +2,16 @@ package io.github.ricardosander.jusbrasilprocessservice.application;
 
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 class RetrieveProcessUseCaseTest {
 
     @Test
-    void test() {
-        new RetrieveProcessUseCase();
-        assertThat(true).isTrue();
+    void shouldThrowsIllegalArgumentException_whenNullUniqueProcessNumberingIsGiven() {
+
+        RetrieveProcessUseCase retrieveProcessUseCase = new RetrieveProcessUseCase();
+
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> retrieveProcessUseCase.execute(null));
     }
 }
