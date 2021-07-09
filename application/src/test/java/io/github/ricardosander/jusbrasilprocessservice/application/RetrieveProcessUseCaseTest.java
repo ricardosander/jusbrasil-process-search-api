@@ -11,7 +11,7 @@ class RetrieveProcessUseCaseTest {
 
         RetrieveProcessUseCase retrieveProcessUseCase = new RetrieveProcessUseCase();
 
-        assertThatExceptionOfType(IllegalArgumentException.class)
+        assertThatExceptionOfType(RetrieveProcessUseCase.InvalidUniqueProcessNumbering.class)
                 .isThrownBy(() -> retrieveProcessUseCase.execute(null));
     }
 }
