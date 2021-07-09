@@ -16,40 +16,7 @@ class RetrieveProcessUseCaseTest {
     @BeforeEach
     void setUp() {
 
-        Map<String, RetrieveProcessUseCase.Process> processes = Map.of(
-                "07108025520188020001", new RetrieveProcessUseCase.Process(
-                        "07108025520188020001",
-                        "Procedimento Comum Cível",
-                        "Cível",
-                        "Dano Material",
-                        "02/05/2018 às 19:01 - Sorteio",
-                        "José Cícero Alves da Silva",
-                        "R$ 281.178,42",
-                        "Autor \tJosé Carlos Cerqueira Souza Filho\n" +
-                                "Advogado:  Vinicius Faria de Cerqueira\n" +
-                                "Ré \tCony Engenharia Ltda.\n" +
-                                "Advogado:  Carlos Henrique de Mendonça Brandão \n" +
-                                "Advogado:  Guilherme Freire Furtado \n" +
-                                "Advogada:  Maria Eugênia Barreiros de Mello \n" +
-                                "Advogado:  Vítor Reis de Araujo Carvalho",
-                        "22/02/2021\t\tRemetido recurso eletrônico ao Tribunal de Justiça/Turma de recurso"
-                ),
-                "08219015120188120001", new RetrieveProcessUseCase.Process(
-                        "08219015120188120001",
-                        "Procedimento Comum Cível",
-                        "Cível",
-                        "Enquadramento",
-                        "30/07/2018 às 12:39 - Automática",
-                        "Fernando Paes de Campos",
-                        "R$ 10.000,00",
-                        "Autora \tLeidi Silva Ormond Galvão\n" +
-                                "Advogada:  Adriana Catelan Skowronski  \n" +
-                                "Advogada:  Ana Silvia Pessoa Salgado de Moura\n" +
-                                "Réu \tEstado de Mato Grosso do Sul\n" +
-                                "RepreLeg:  Procuradoria Geral do Estado de Mato Grosso do Sul",
-                        "17/07/2020\t\tGuia de Recolhimento Judicial Emitida"
-                )
-        );
+        Map<String, RetrieveProcessUseCase.Process> processes = createProcesses();
 
         RetrieveProcessUseCase.RetrieveProcessGateway retrieveProcessGateway = uniqueProcessNumbering ->
                 Optional.ofNullable(processes.get(uniqueProcessNumbering));
@@ -120,5 +87,60 @@ class RetrieveProcessUseCaseTest {
 
         assertThatExceptionOfType(RetrieveProcessUseCase.InvalidUniqueProcessNumberingException.class)
                 .isThrownBy(() -> retrieveProcessUseCase.execute(uniqueProcessNumbering));
+    }
+
+    private Map<String, RetrieveProcessUseCase.Process> createProcesses() {
+        return Map.of(
+                "07108025520188020001", createProcess(
+                        "07108025520188020001",
+                        "Dano Material",
+                        "02/05/2018 às 19:01 - Sorteio",
+                        "José Cícero Alves da Silva",
+                        "R$ 281.178,42",
+                        "Autor \tJosé Carlos Cerqueira Souza Filho\n" +
+                                "Advogado:  Vinicius Faria de Cerqueira\n" +
+                                "Ré \tCony Engenharia Ltda.\n" +
+                                "Advogado:  Carlos Henrique de Mendonça Brandão \n" +
+                                "Advogado:  Guilherme Freire Furtado \n" +
+                                "Advogada:  Maria Eugênia Barreiros de Mello \n" +
+                                "Advogado:  Vítor Reis de Araujo Carvalho",
+                        "22/02/2021\t\tRemetido recurso eletrônico ao Tribunal de Justiça/Turma de recurso"
+                ),
+                "08219015120188120001", createProcess(
+                        "08219015120188120001",
+                        "Enquadramento",
+                        "30/07/2018 às 12:39 - Automática",
+                        "Fernando Paes de Campos",
+                        "R$ 10.000,00",
+                        "Autora \tLeidi Silva Ormond Galvão\n" +
+                                "Advogada:  Adriana Catelan Skowronski  \n" +
+                                "Advogada:  Ana Silvia Pessoa Salgado de Moura\n" +
+                                "Réu \tEstado de Mato Grosso do Sul\n" +
+                                "RepreLeg:  Procuradoria Geral do Estado de Mato Grosso do Sul",
+                        "17/07/2020\t\tGuia de Recolhimento Judicial Emitida"
+                )
+        );
+    }
+
+    private RetrieveProcessUseCase.Process createProcess(
+            String id,
+            String subject,
+            String distributionDate,
+            String judge,
+            String shareValue,
+            String processParts,
+            String movements
+    ) {
+        return new RetrieveProcessUseCase.Process(
+                id,
+                "Procedimento Comum Cível",
+                "Cível",
+                subject,
+                distributionDate,
+                judge,
+                shareValue,
+                processParts,
+                movements
+        );
     }
 }
