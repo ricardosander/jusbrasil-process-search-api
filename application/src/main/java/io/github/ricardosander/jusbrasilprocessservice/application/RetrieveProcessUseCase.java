@@ -2,7 +2,7 @@ package io.github.ricardosander.jusbrasilprocessservice.application;
 
 import java.util.Optional;
 
-public class RetrieveProcessUseCase {
+class RetrieveProcessUseCase {
 
     private final RetrieveProcessGateway retrieveProcessGateway;
 

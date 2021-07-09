@@ -1,6 +1,6 @@
 package io.github.ricardosander.jusbrasilprocessservice.application;
 
-public class Process {
+class Process {
 
     private final String id;
     private final String clazz;
