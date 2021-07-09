@@ -7,11 +7,11 @@ import static org.assertj.core.api.Assertions.*;
 class RetrieveProcessUseCaseTest {
 
     @Test
-    void shouldThrowsIllegalArgumentException_whenNullUniqueProcessNumberingIsGiven() {
+    void shouldThrowsInvalidUniqueProcessNumberingException_whenNullUniqueProcessNumberingIsGiven() {
 
         RetrieveProcessUseCase retrieveProcessUseCase = new RetrieveProcessUseCase();
 
-        assertThatExceptionOfType(RetrieveProcessUseCase.InvalidUniqueProcessNumbering.class)
+        assertThatExceptionOfType(RetrieveProcessUseCase.InvalidUniqueProcessNumberingException.class)
                 .isThrownBy(() -> retrieveProcessUseCase.execute(null));
     }
 }
