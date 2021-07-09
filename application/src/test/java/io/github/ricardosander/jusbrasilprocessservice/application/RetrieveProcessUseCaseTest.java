@@ -1,15 +1,21 @@
 package io.github.ricardosander.jusbrasilprocessservice.application;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class RetrieveProcessUseCaseTest {
 
+    private RetrieveProcessUseCase retrieveProcessUseCase;
+
+    @BeforeEach
+    void setUp() {
+        retrieveProcessUseCase = new RetrieveProcessUseCase();
+    }
+
     @Test
     void shouldThrowsInvalidUniqueProcessNumberingException_whenNullUniqueProcessNumberingIsGiven() {
-
-        RetrieveProcessUseCase retrieveProcessUseCase = new RetrieveProcessUseCase();
 
         String uniqueProcessNumbering = null;
 
@@ -19,8 +25,6 @@ class RetrieveProcessUseCaseTest {
 
     @Test
     void shouldThrowsInvalidUniqueProcessNumberingException_whenEmptyUniqueProcessNumberingIsGiven() {
-
-        RetrieveProcessUseCase retrieveProcessUseCase = new RetrieveProcessUseCase();
 
         String uniqueProcessNumbering = "";
 
