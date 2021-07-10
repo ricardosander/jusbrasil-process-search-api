@@ -13,7 +13,7 @@ class Process {
     private final String judge;
     private final String shareValue;
     private final List<ProcessPart> processParts;
-    private final List<String> movements;
+    private final List<Movement> movements;
 
     public Process(
             String id,
@@ -24,7 +24,7 @@ class Process {
             String judge,
             String shareValue,
             List<ProcessPart> processParts,
-            List<String> movements
+            List<Movement> movements
     ) {
         this.id = id;
         this.clazz = clazz;
@@ -69,7 +69,7 @@ class Process {
         return processParts;
     }
 
-    public List<String> getMovements() {
+    public List<Movement> getMovements() {
         return movements;
     }
 

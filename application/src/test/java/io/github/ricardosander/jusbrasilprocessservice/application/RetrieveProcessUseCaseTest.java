@@ -3,6 +3,7 @@ package io.github.ricardosander.jusbrasilprocessservice.application;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -53,7 +54,12 @@ class RetrieveProcessUseCaseTest {
                 new ProcessPart("Ré", "Advogada", "Maria Eugênia Barreiros de Mello"),
                 new ProcessPart("Ré", "Advogado", "Vítor Reis de Araujo Carvalho")
         );
-        assertThat(process.get().getMovements()).contains("22/02/2021\t\tRemetido recurso eletrônico ao Tribunal de Justiça/Turma de recurso");
+        assertThat(process.get().getMovements()).contains(
+                new Movement(
+                        LocalDate.parse("22/02/2021", DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                        "Remetido recurso eletrônico ao Tribunal de Justiça/Turma de recurso"
+                )
+        );
     }
 
     @Test
@@ -80,7 +86,12 @@ class RetrieveProcessUseCaseTest {
                 new ProcessPart("Réu", "Estado de Mato Grosso do Sul"),
                 new ProcessPart("Réu", "RepreLeg", "Procuradoria Geral do Estado de Mato Grosso do Sul")
         );
-        assertThat(process.get().getMovements()).contains("17/07/2020\t\tGuia de Recolhimento Judicial Emitida");
+        assertThat(process.get().getMovements()).contains(
+                new Movement(
+                        LocalDate.parse("17/07/2020", DateTimeFormatter.ofPattern("dd/MM/yyy")),
+                        "Guia de Recolhimento Judicial Emitida"
+                )
+        );
     }
 
     @Test
@@ -128,7 +139,12 @@ class RetrieveProcessUseCaseTest {
                                 new ProcessPart("Ré", "Advogada", "Maria Eugênia Barreiros de Mello"),
                                 new ProcessPart("Ré", "Advogado", "Vítor Reis de Araujo Carvalho")
                         ),
-                        List.of("22/02/2021\t\tRemetido recurso eletrônico ao Tribunal de Justiça/Turma de recurso")
+                        List.of(
+                                new Movement(
+                                        LocalDate.parse("22/02/2021", DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                                        "Remetido recurso eletrônico ao Tribunal de Justiça/Turma de recurso"
+                                )
+                        )
                 ),
                 "08219015120188120001", createProcess(
                         "08219015120188120001",
@@ -144,7 +160,12 @@ class RetrieveProcessUseCaseTest {
                                 new ProcessPart("Réu", "Estado de Mato Grosso do Sul"),
                                 new ProcessPart("Réu", "RepreLeg", "Procuradoria Geral do Estado de Mato Grosso do Sul")
                         ),
-                        List.of("17/07/2020\t\tGuia de Recolhimento Judicial Emitida")
+                        List.of(
+                                new Movement(
+                                        LocalDate.parse("17/07/2020", DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                                        "Guia de Recolhimento Judicial Emitida"
+                                )
+                        )
                 )
         );
     }
@@ -157,7 +178,7 @@ class RetrieveProcessUseCaseTest {
             String judge,
             String shareValue,
             List<ProcessPart> processParts,
-            List<String> movements
+            List<Movement> movements
     ) {
         return new Process(
                 id,
