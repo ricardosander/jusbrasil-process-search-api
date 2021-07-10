@@ -12,7 +12,7 @@ class Process {
     private final DistributionDate distributionDate;
     private final String judge;
     private final String shareValue;
-    private final List<String> processParts;
+    private final List<ProcessPart> processParts;
     private final String movements;
 
     public Process(
@@ -23,7 +23,7 @@ class Process {
             DistributionDate distributionDate,
             String judge,
             String shareValue,
-            List<String> processParts,
+            List<ProcessPart> processParts,
             String movements
     ) {
         this.id = id;
@@ -65,7 +65,7 @@ class Process {
         return shareValue;
     }
 
-    public List<String> getProcessParts() {
+    public List<ProcessPart> getProcessParts() {
         return processParts;
     }
 
