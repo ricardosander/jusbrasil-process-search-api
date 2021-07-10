@@ -6,7 +6,7 @@ class Process {
     private final String clazz;
     private final String area;
     private final String subject;
-    private final String distributionDate;
+    private final DistributionDate distributionDate;
     private final String judge;
     private final String shareValue;
     private final String processParts;
@@ -17,7 +17,7 @@ class Process {
             String clazz,
             String area,
             String subject,
-            String distributionDate,
+            DistributionDate distributionDate,
             String judge,
             String shareValue,
             String processParts,
@@ -50,7 +50,7 @@ class Process {
         return subject;
     }
 
-    public String getDistributionDate() {
+    public DistributionDate getDistributionDate() {
         return distributionDate;
     }
 

@@ -3,6 +3,8 @@ package io.github.ricardosander.jusbrasilprocessservice.application;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.Optional;
 
@@ -36,7 +38,8 @@ class RetrieveProcessUseCaseTest {
         assertThat(process.get().getClazz()).isEqualTo("Procedimento Comum Cível");
         assertThat(process.get().getArea()).isEqualTo("Cível");
         assertThat(process.get().getSubject()).isEqualTo("Dano Material");
-        assertThat(process.get().getDistributionDate()).isEqualTo("02/05/2018 às 19:01 - Sorteio");
+        assertThat(process.get().getDistributionDate().getData().format(DateTimeFormatter.ofPattern("dd/MM/yyy HH:mm"))).isEqualTo("02/05/2018 19:01");
+        assertThat(process.get().getDistributionDate().getType()).isEqualTo("Sorteio");
         assertThat(process.get().getJudge()).isEqualTo("José Cícero Alves da Silva");
         assertThat(process.get().getShareValue()).isEqualTo("R$ 281.178,42");
         assertThat(process.get().getProcessParts()).isEqualTo("Autor \tJosé Carlos Cerqueira Souza Filho\nAdvogado:  Vinicius Faria de Cerqueira\nRé \tCony Engenharia Ltda.\nAdvogado:  Carlos Henrique de Mendonça Brandão \nAdvogado:  Guilherme Freire Furtado \nAdvogada:  Maria Eugênia Barreiros de Mello \nAdvogado:  Vítor Reis de Araujo Carvalho");
@@ -55,7 +58,8 @@ class RetrieveProcessUseCaseTest {
         assertThat(process.get().getClazz()).isEqualTo("Procedimento Comum Cível");
         assertThat(process.get().getArea()).isEqualTo("Cível");
         assertThat(process.get().getSubject()).isEqualTo("Enquadramento");
-        assertThat(process.get().getDistributionDate()).isEqualTo("30/07/2018 às 12:39 - Automática");
+        assertThat(process.get().getDistributionDate().getData().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))).isEqualTo("30/07/2018 12:39");
+        assertThat(process.get().getDistributionDate().getType()).isEqualTo("Automática");
         assertThat(process.get().getJudge()).isEqualTo("Fernando Paes de Campos");
         assertThat(process.get().getShareValue()).isEqualTo("R$ 10.000,00");
         assertThat(process.get().getProcessParts()).isEqualTo("Autora \tLeidi Silva Ormond Galvão\nAdvogada:  Adriana Catelan Skowronski  \nAdvogada:  Ana Silvia Pessoa Salgado de Moura\nRéu \tEstado de Mato Grosso do Sul\nRepreLeg:  Procuradoria Geral do Estado de Mato Grosso do Sul");
@@ -94,7 +98,8 @@ class RetrieveProcessUseCaseTest {
                 "07108025520188020001", createProcess(
                         "07108025520188020001",
                         "Dano Material",
-                        "02/05/2018 às 19:01 - Sorteio",
+                        LocalDateTime.parse("02/05/2018 19:01", DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")),
+                        "Sorteio",
                         "José Cícero Alves da Silva",
                         "R$ 281.178,42",
                         "Autor \tJosé Carlos Cerqueira Souza Filho\n" +
@@ -109,7 +114,8 @@ class RetrieveProcessUseCaseTest {
                 "08219015120188120001", createProcess(
                         "08219015120188120001",
                         "Enquadramento",
-                        "30/07/2018 às 12:39 - Automática",
+                        LocalDateTime.parse("30/07/2018 12:39", DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")),
+                        "Automática",
                         "Fernando Paes de Campos",
                         "R$ 10.000,00",
                         "Autora \tLeidi Silva Ormond Galvão\n" +
@@ -125,7 +131,8 @@ class RetrieveProcessUseCaseTest {
     private Process createProcess(
             String id,
             String subject,
-            String distributionDate,
+            LocalDateTime distributionDate,
+            String distributionType,
             String judge,
             String shareValue,
             String processParts,
@@ -136,7 +143,7 @@ class RetrieveProcessUseCaseTest {
                 "Procedimento Comum Cível",
                 "Cível",
                 subject,
-                distributionDate,
+                new DistributionDate(distributionDate, distributionType),
                 judge,
                 shareValue,
                 processParts,
