@@ -53,7 +53,7 @@ class RetrieveProcessUseCaseTest {
                 new ProcessPart("Ré", "Advogada", "Maria Eugênia Barreiros de Mello"),
                 new ProcessPart("Ré", "Advogado", "Vítor Reis de Araujo Carvalho")
         );
-        assertThat(process.get().getMovements()).isEqualTo("22/02/2021\t\tRemetido recurso eletrônico ao Tribunal de Justiça/Turma de recurso");
+        assertThat(process.get().getMovements()).contains("22/02/2021\t\tRemetido recurso eletrônico ao Tribunal de Justiça/Turma de recurso");
     }
 
     @Test
@@ -80,7 +80,7 @@ class RetrieveProcessUseCaseTest {
                 new ProcessPart("Réu", "Estado de Mato Grosso do Sul"),
                 new ProcessPart("Réu", "RepreLeg", "Procuradoria Geral do Estado de Mato Grosso do Sul")
         );
-        assertThat(process.get().getMovements()).isEqualTo("17/07/2020\t\tGuia de Recolhimento Judicial Emitida");
+        assertThat(process.get().getMovements()).contains("17/07/2020\t\tGuia de Recolhimento Judicial Emitida");
     }
 
     @Test
@@ -128,7 +128,7 @@ class RetrieveProcessUseCaseTest {
                                 new ProcessPart("Ré", "Advogada", "Maria Eugênia Barreiros de Mello"),
                                 new ProcessPart("Ré", "Advogado", "Vítor Reis de Araujo Carvalho")
                         ),
-                        "22/02/2021\t\tRemetido recurso eletrônico ao Tribunal de Justiça/Turma de recurso"
+                        List.of("22/02/2021\t\tRemetido recurso eletrônico ao Tribunal de Justiça/Turma de recurso")
                 ),
                 "08219015120188120001", createProcess(
                         "08219015120188120001",
@@ -144,7 +144,7 @@ class RetrieveProcessUseCaseTest {
                                 new ProcessPart("Réu", "Estado de Mato Grosso do Sul"),
                                 new ProcessPart("Réu", "RepreLeg", "Procuradoria Geral do Estado de Mato Grosso do Sul")
                         ),
-                        "17/07/2020\t\tGuia de Recolhimento Judicial Emitida"
+                        List.of("17/07/2020\t\tGuia de Recolhimento Judicial Emitida")
                 )
         );
     }
@@ -157,7 +157,7 @@ class RetrieveProcessUseCaseTest {
             String judge,
             String shareValue,
             List<ProcessPart> processParts,
-            String movements
+            List<String> movements
     ) {
         return new Process(
                 id,
