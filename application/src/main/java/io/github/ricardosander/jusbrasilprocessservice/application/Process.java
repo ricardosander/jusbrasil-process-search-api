@@ -1,6 +1,7 @@
 package io.github.ricardosander.jusbrasilprocessservice.application;
 
 import java.util.List;
+import java.util.Objects;
 
 class Process {
 
@@ -70,5 +71,26 @@ class Process {
 
     public String getMovements() {
         return movements;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Process process = (Process) o;
+        return Objects.equals(id, process.id)
+                && Objects.equals(clazz, process.clazz)
+                && Objects.equals(area, process.area)
+                && Objects.equals(subject, process.subject)
+                && Objects.equals(distributionDate, process.distributionDate)
+                && Objects.equals(judge, process.judge)
+                && Objects.equals(shareValue, process.shareValue)
+                && Objects.equals(processParts, process.processParts)
+                && Objects.equals(movements, process.movements);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, clazz, area, subject, distributionDate, judge, shareValue, processParts, movements);
     }
 }
