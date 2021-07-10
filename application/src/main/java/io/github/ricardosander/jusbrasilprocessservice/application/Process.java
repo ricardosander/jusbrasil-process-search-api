@@ -1,5 +1,7 @@
 package io.github.ricardosander.jusbrasilprocessservice.application;
 
+import java.util.List;
+
 class Process {
 
     private final String id;
@@ -9,7 +11,7 @@ class Process {
     private final DistributionDate distributionDate;
     private final String judge;
     private final String shareValue;
-    private final String processParts;
+    private final List<String> processParts;
     private final String movements;
 
     public Process(
@@ -20,7 +22,7 @@ class Process {
             DistributionDate distributionDate,
             String judge,
             String shareValue,
-            String processParts,
+            List<String> processParts,
             String movements
     ) {
         this.id = id;
@@ -62,7 +64,7 @@ class Process {
         return shareValue;
     }
 
-    public String getProcessParts() {
+    public List<String> getProcessParts() {
         return processParts;
     }
 

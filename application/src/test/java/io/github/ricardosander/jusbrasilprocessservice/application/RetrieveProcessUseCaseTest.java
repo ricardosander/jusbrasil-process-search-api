@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -42,7 +43,16 @@ class RetrieveProcessUseCaseTest {
         assertThat(process.get().getDistributionDate().getType()).isEqualTo("Sorteio");
         assertThat(process.get().getJudge()).isEqualTo("José Cícero Alves da Silva");
         assertThat(process.get().getShareValue()).isEqualTo("R$ 281.178,42");
-        assertThat(process.get().getProcessParts()).isEqualTo("Autor \tJosé Carlos Cerqueira Souza Filho\nAdvogado:  Vinicius Faria de Cerqueira\nRé \tCony Engenharia Ltda.\nAdvogado:  Carlos Henrique de Mendonça Brandão \nAdvogado:  Guilherme Freire Furtado \nAdvogada:  Maria Eugênia Barreiros de Mello \nAdvogado:  Vítor Reis de Araujo Carvalho");
+        assertThat(process.get().getProcessParts()).hasSize(7);
+        assertThat(process.get().getProcessParts()).contains(
+                "Autor \tJosé Carlos Cerqueira Souza Filho",
+                "Autor \tAdvogado:  Vinicius Faria de Cerqueira",
+                "Ré \tCony Engenharia Ltda.",
+                "Ré \tAdvogado:  Carlos Henrique de Mendonça Brandão",
+                "Ré \tAdvogado:  Guilherme Freire Furtado",
+                "Ré \tAdvogada:  Maria Eugênia Barreiros de Mello",
+                "Ré \tAdvogado:  Vítor Reis de Araujo Carvalho"
+        );
         assertThat(process.get().getMovements()).isEqualTo("22/02/2021\t\tRemetido recurso eletrônico ao Tribunal de Justiça/Turma de recurso");
     }
 
@@ -62,7 +72,14 @@ class RetrieveProcessUseCaseTest {
         assertThat(process.get().getDistributionDate().getType()).isEqualTo("Automática");
         assertThat(process.get().getJudge()).isEqualTo("Fernando Paes de Campos");
         assertThat(process.get().getShareValue()).isEqualTo("R$ 10.000,00");
-        assertThat(process.get().getProcessParts()).isEqualTo("Autora \tLeidi Silva Ormond Galvão\nAdvogada:  Adriana Catelan Skowronski  \nAdvogada:  Ana Silvia Pessoa Salgado de Moura\nRéu \tEstado de Mato Grosso do Sul\nRepreLeg:  Procuradoria Geral do Estado de Mato Grosso do Sul");
+        assertThat(process.get().getProcessParts()).hasSize(5);
+        assertThat(process.get().getProcessParts()).contains(
+                "Autora \tLeidi Silva Ormond Galvão",
+                "Autora \tAdvogada:  Adriana Catelan Skowronski",
+                "Autora \tAdvogada:  Ana Silvia Pessoa Salgado de Moura",
+                "Réu \tEstado de Mato Grosso do Sul",
+                "Réu \tRepreLeg:  Procuradoria Geral do Estado de Mato Grosso do Sul"
+        );
         assertThat(process.get().getMovements()).isEqualTo("17/07/2020\t\tGuia de Recolhimento Judicial Emitida");
     }
 
@@ -102,13 +119,15 @@ class RetrieveProcessUseCaseTest {
                         "Sorteio",
                         "José Cícero Alves da Silva",
                         "R$ 281.178,42",
-                        "Autor \tJosé Carlos Cerqueira Souza Filho\n" +
-                                "Advogado:  Vinicius Faria de Cerqueira\n" +
-                                "Ré \tCony Engenharia Ltda.\n" +
-                                "Advogado:  Carlos Henrique de Mendonça Brandão \n" +
-                                "Advogado:  Guilherme Freire Furtado \n" +
-                                "Advogada:  Maria Eugênia Barreiros de Mello \n" +
-                                "Advogado:  Vítor Reis de Araujo Carvalho",
+                        List.of(
+                                "Autor \tJosé Carlos Cerqueira Souza Filho",
+                                "Autor \tAdvogado:  Vinicius Faria de Cerqueira",
+                                "Ré \tCony Engenharia Ltda.",
+                                "Ré \tAdvogado:  Carlos Henrique de Mendonça Brandão",
+                                "Ré \tAdvogado:  Guilherme Freire Furtado",
+                                "Ré \tAdvogada:  Maria Eugênia Barreiros de Mello",
+                                "Ré \tAdvogado:  Vítor Reis de Araujo Carvalho"
+                        ),
                         "22/02/2021\t\tRemetido recurso eletrônico ao Tribunal de Justiça/Turma de recurso"
                 ),
                 "08219015120188120001", createProcess(
@@ -118,11 +137,13 @@ class RetrieveProcessUseCaseTest {
                         "Automática",
                         "Fernando Paes de Campos",
                         "R$ 10.000,00",
-                        "Autora \tLeidi Silva Ormond Galvão\n" +
-                                "Advogada:  Adriana Catelan Skowronski  \n" +
-                                "Advogada:  Ana Silvia Pessoa Salgado de Moura\n" +
-                                "Réu \tEstado de Mato Grosso do Sul\n" +
-                                "RepreLeg:  Procuradoria Geral do Estado de Mato Grosso do Sul",
+                        List.of(
+                                "Autora \tLeidi Silva Ormond Galvão",
+                                "Autora \tAdvogada:  Adriana Catelan Skowronski",
+                                "Autora \tAdvogada:  Ana Silvia Pessoa Salgado de Moura",
+                                "Réu \tEstado de Mato Grosso do Sul",
+                                "Réu \tRepreLeg:  Procuradoria Geral do Estado de Mato Grosso do Sul"
+                        ),
                         "17/07/2020\t\tGuia de Recolhimento Judicial Emitida"
                 )
         );
@@ -135,7 +156,7 @@ class RetrieveProcessUseCaseTest {
             String distributionType,
             String judge,
             String shareValue,
-            String processParts,
+            List<String> processParts,
             String movements
     ) {
         return new Process(
