@@ -38,27 +38,12 @@ class RetrieveProcessUseCaseTest {
 
         Optional<Process> process = retrieveProcessUseCase.execute(uniqueProcessNumbering);
 
-        assertThat(process).isPresent();
-        assertThat(process.get().getClazz()).isEqualTo("Procedimento Comum Cível");
-        assertThat(process.get().getArea()).isEqualTo("Cível");
-        assertThat(process.get().getSubject()).isEqualTo("Dano Material");
-        assertThat(process.get().getDistributionDate().getData().format(DATE_TIME_FORMATTER)).isEqualTo("02/05/2018 19:01");
-        assertThat(process.get().getDistributionDate().getType()).isEqualTo("Sorteio");
-        assertThat(process.get().getJudge()).isEqualTo("José Cícero Alves da Silva");
-        assertThat(process.get().getShareValue()).isEqualTo("R$ 281.178,42");
-        assertThat(process.get().getProcessParts()).hasSize(7);
-        assertThat(process.get().getProcessParts()).contains(
-                createsProcessPart("Autor", "José Carlos Cerqueira Souza Filho"),
-                createsProcessPart("Autor", "Advogado", "Vinicius Faria de Cerqueira"),
-                createsProcessPart("Ré", "Cony Engenharia Ltda."),
-                createsProcessPart("Ré", "Advogado", "Carlos Henrique de Mendonça Brandão"),
-                createsProcessPart("Ré", "Advogado", "Guilherme Freire Furtado"),
-                createsProcessPart("Ré", "Advogada", "Maria Eugênia Barreiros de Mello"),
-                createsProcessPart("Ré", "Advogado", "Vítor Reis de Araujo Carvalho")
-        );
-        assertThat(process.get().getMovements()).contains(
-                createsProcessMovement("22/02/2021", "Remetido recurso eletrônico ao Tribunal de Justiça/Turma de recurso")
-        );
+        Process expected = createsTJALProcess();
+
+        assertThat(process)
+                .isPresent()
+                .contains(expected);
+        assertThat(process.get()).isNotSameAs(expected);
     }
 
     @Test
@@ -68,25 +53,12 @@ class RetrieveProcessUseCaseTest {
 
         Optional<Process> process = retrieveProcessUseCase.execute(uniqueProcessNumbering);
 
-        assertThat(process).isPresent();
-        assertThat(process.get().getClazz()).isEqualTo("Procedimento Comum Cível");
-        assertThat(process.get().getArea()).isEqualTo("Cível");
-        assertThat(process.get().getSubject()).isEqualTo("Enquadramento");
-        assertThat(process.get().getDistributionDate().getData().format(DATE_TIME_FORMATTER)).isEqualTo("30/07/2018 12:39");
-        assertThat(process.get().getDistributionDate().getType()).isEqualTo("Automática");
-        assertThat(process.get().getJudge()).isEqualTo("Fernando Paes de Campos");
-        assertThat(process.get().getShareValue()).isEqualTo("R$ 10.000,00");
-        assertThat(process.get().getProcessParts()).hasSize(5);
-        assertThat(process.get().getProcessParts()).contains(
-                createsProcessPart("Autora", "Leidi Silva Ormond Galvão"),
-                createsProcessPart("Autora", "Advogada", "Adriana Catelan Skowronski"),
-                createsProcessPart("Autora", "Advogada", "Ana Silvia Pessoa Salgado de Moura"),
-                createsProcessPart("Réu", "Estado de Mato Grosso do Sul"),
-                createsProcessPart("Réu", "RepreLeg", "Procuradoria Geral do Estado de Mato Grosso do Sul")
-        );
-        assertThat(process.get().getMovements()).contains(
-                createsProcessMovement("17/07/2020", "Guia de Recolhimento Judicial Emitida")
-        );
+        Process expected = createsTJMSProcess();
+
+        assertThat(process)
+                .isPresent()
+                .contains(expected);
+        assertThat(process.get()).isNotSameAs(expected);
     }
 
     @Test
@@ -119,7 +91,7 @@ class RetrieveProcessUseCaseTest {
     private Map<String, Process> createProcesses() {
         return Map.of(
                 "07108025520188020001", createsTJALProcess(),
-                "08219015120188120001", createsTMJSProcess()
+                "08219015120188120001", createsTJMSProcess()
         );
     }
 
@@ -146,7 +118,7 @@ class RetrieveProcessUseCaseTest {
         );
     }
 
-    private Process createsTMJSProcess() {
+    private Process createsTJMSProcess() {
         return createProcess(
                 "Enquadramento",
                 createsDateTime("30/07/2018 12:39"),
