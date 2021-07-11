@@ -38,7 +38,8 @@ class RetrieveProcessUseCase {
             || isInvalidTR(uniqueProcessNumbering)
             || isInvalidJ(uniqueProcessNumbering)
             || isInvalidYear(uniqueProcessNumbering)
-            || isInvalidNumber(uniqueProcessNumbering);
+            || isInvalidNumber(uniqueProcessNumbering)
+            || isInvalidValidator(uniqueProcessNumbering);
     }
 
     private boolean isNotSupported(String uniqueProcessNumbering) {
@@ -68,6 +69,18 @@ class RetrieveProcessUseCase {
             0,
             uniqueProcessNumbering.length() - 13
         ));
+    }
+
+    private boolean isInvalidValidator(String uniqueProcessNumbering) {
+        long validatorDigit = Integer.parseInt(uniqueProcessNumbering.substring(
+            uniqueProcessNumbering.length() - 13,
+            uniqueProcessNumbering.length() - 11
+        ));
+        long toValidate = Long.parseLong(
+            uniqueProcessNumbering.substring(0, uniqueProcessNumbering.length() - 13) +
+                uniqueProcessNumbering.substring(uniqueProcessNumbering.length() - 11)
+        );
+        return (98 - ((toValidate * 100) % 97)) != validatorDigit;
     }
 
     private boolean isTRNotSupported(String uniqueProcessNumbering) {

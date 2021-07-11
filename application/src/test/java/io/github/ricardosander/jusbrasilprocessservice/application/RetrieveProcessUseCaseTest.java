@@ -136,7 +136,7 @@ class RetrieveProcessUseCaseTest {
     @Test
     void shouldThrowsNotSupportedUniqueProcessNumberingException_whenGivenUniqueProcessNumberingTRIsNotSupported() {
 
-        String uniqueProcessNumbering = "08219015120188900001";
+        String uniqueProcessNumbering = "08219017920188900001";
 
         assertThatExceptionOfType(NotSupportedUniqueProcessNumberingException.class)
             .isThrownBy(() -> retrieveProcessUseCase.execute(uniqueProcessNumbering));
@@ -154,7 +154,7 @@ class RetrieveProcessUseCaseTest {
     @Test
     void shouldThrowsNotSupportedUniqueProcessNumberingException_whenGivenUniqueProcessNumberingJIsNotSupported() {
 
-        String uniqueProcessNumbering = "08219015120189120001";
+        String uniqueProcessNumbering = "08219016720189120001";
 
         assertThatExceptionOfType(NotSupportedUniqueProcessNumberingException.class)
             .isThrownBy(() -> retrieveProcessUseCase.execute(uniqueProcessNumbering));
@@ -183,6 +183,15 @@ class RetrieveProcessUseCaseTest {
     void shouldThrowsInvalidUniqueProcessNumberingException_whenGivenUniqueProcessNumberingHasInvalidNumber() {
 
         String uniqueProcessNumbering = "00000005120188120001";
+
+        assertThatExceptionOfType(InvalidUniqueProcessNumberingException.class)
+            .isThrownBy(() -> retrieveProcessUseCase.execute(uniqueProcessNumbering));
+    }
+
+    @Test
+    void shouldThrowsInvalidUniqueProcessNumberingException_whenGivenUniqueProcessNumberingHasInvalidValidator() {
+
+        String uniqueProcessNumbering = "08219015220188120001";
 
         assertThatExceptionOfType(InvalidUniqueProcessNumberingException.class)
             .isThrownBy(() -> retrieveProcessUseCase.execute(uniqueProcessNumbering));
