@@ -1,5 +1,6 @@
 package io.github.ricardosander.jusbrasilprocessservice.application;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 class RetrieveProcessUseCase {
@@ -35,7 +36,8 @@ class RetrieveProcessUseCase {
             || uniqueProcessNumbering.length() < 14
             || uniqueProcessNumbering.length() > 20
             || isInvalidTR(uniqueProcessNumbering)
-            || isInvalidJ(uniqueProcessNumbering);
+            || isInvalidJ(uniqueProcessNumbering)
+            || isInvalidYear(uniqueProcessNumbering);
     }
 
     private boolean isNotSupported(String uniqueProcessNumbering) {
@@ -50,6 +52,14 @@ class RetrieveProcessUseCase {
 
     private boolean isInvalidJ(String uniqueProcessNumbering) {
         return 0 == extractJ(uniqueProcessNumbering);
+    }
+
+    private boolean isInvalidYear(String uniqueProcessNumbering) {
+        int year = Integer.parseInt(uniqueProcessNumbering.substring(
+            uniqueProcessNumbering.length() - 11,
+            uniqueProcessNumbering.length() - 7
+        ));
+        return year < 1889 || year > LocalDate.now().getYear();
     }
 
     private boolean isTRNotSupported(String uniqueProcessNumbering) {

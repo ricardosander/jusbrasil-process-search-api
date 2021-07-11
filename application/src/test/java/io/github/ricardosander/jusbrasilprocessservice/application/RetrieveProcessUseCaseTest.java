@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 class RetrieveProcessUseCaseTest {
@@ -156,6 +157,25 @@ class RetrieveProcessUseCaseTest {
         String uniqueProcessNumbering = "08219015120189120001";
 
         assertThatExceptionOfType(NotSupportedUniqueProcessNumberingException.class)
+            .isThrownBy(() -> retrieveProcessUseCase.execute(uniqueProcessNumbering));
+    }
+
+    @Test
+    void shouldThrowsInvalidUniqueProcessNumberingException_whenGivenUniqueProcessNumberingJIHasFutureYear() {
+
+        int futureYear = LocalDate.now().getYear() + 1;
+        String uniqueProcessNumbering = String.format("082190151%s8120001", futureYear);
+
+        assertThatExceptionOfType(InvalidUniqueProcessNumberingException.class)
+            .isThrownBy(() -> retrieveProcessUseCase.execute(uniqueProcessNumbering));
+    }
+
+    @Test
+    void shouldThrowsInvalidUniqueProcessNumberingException_whenGivenUniqueProcessNumberingJIHasYearBeforeRepublic() {
+
+        String uniqueProcessNumbering = "08219015118888120001";
+
+        assertThatExceptionOfType(InvalidUniqueProcessNumberingException.class)
             .isThrownBy(() -> retrieveProcessUseCase.execute(uniqueProcessNumbering));
     }
 }
