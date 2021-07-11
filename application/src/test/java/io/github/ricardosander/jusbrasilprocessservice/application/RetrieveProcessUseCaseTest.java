@@ -113,4 +113,13 @@ class RetrieveProcessUseCaseTest {
         assertThatExceptionOfType(InvalidUniqueProcessNumberingException.class)
             .isThrownBy(() -> retrieveProcessUseCase.execute(uniqueProcessNumbering));
     }
+
+    @Test
+    void shouldThrowsInvalidUniqueProcessNumberingException_whenUniqueProcessNumberingGivenIsMoreThanMaximumLength() {
+
+        String uniqueProcessNumbering = "108219015120188120001";
+
+        assertThatExceptionOfType(InvalidUniqueProcessNumberingException.class)
+            .isThrownBy(() -> retrieveProcessUseCase.execute(uniqueProcessNumbering));
+    }
 }
