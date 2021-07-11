@@ -15,6 +15,9 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class RetrieveProcessUseCaseTest {
 
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyy HH:mm");
+
     private RetrieveProcessUseCase retrieveProcessUseCase;
 
     @BeforeEach
@@ -39,7 +42,7 @@ class RetrieveProcessUseCaseTest {
         assertThat(process.get().getClazz()).isEqualTo("Procedimento Comum Cível");
         assertThat(process.get().getArea()).isEqualTo("Cível");
         assertThat(process.get().getSubject()).isEqualTo("Dano Material");
-        assertThat(process.get().getDistributionDate().getData().format(DateTimeFormatter.ofPattern("dd/MM/yyy HH:mm"))).isEqualTo("02/05/2018 19:01");
+        assertThat(process.get().getDistributionDate().getData().format(DATE_TIME_FORMATTER)).isEqualTo("02/05/2018 19:01");
         assertThat(process.get().getDistributionDate().getType()).isEqualTo("Sorteio");
         assertThat(process.get().getJudge()).isEqualTo("José Cícero Alves da Silva");
         assertThat(process.get().getShareValue()).isEqualTo("R$ 281.178,42");
@@ -55,7 +58,7 @@ class RetrieveProcessUseCaseTest {
         );
         assertThat(process.get().getMovements()).contains(
                 new Movement(
-                        LocalDate.parse("22/02/2021", DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                        LocalDate.parse("22/02/2021", DATE_FORMATTER),
                         "Remetido recurso eletrônico ao Tribunal de Justiça/Turma de recurso"
                 )
         );
@@ -72,7 +75,7 @@ class RetrieveProcessUseCaseTest {
         assertThat(process.get().getClazz()).isEqualTo("Procedimento Comum Cível");
         assertThat(process.get().getArea()).isEqualTo("Cível");
         assertThat(process.get().getSubject()).isEqualTo("Enquadramento");
-        assertThat(process.get().getDistributionDate().getData().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))).isEqualTo("30/07/2018 12:39");
+        assertThat(process.get().getDistributionDate().getData().format(DATE_TIME_FORMATTER)).isEqualTo("30/07/2018 12:39");
         assertThat(process.get().getDistributionDate().getType()).isEqualTo("Automática");
         assertThat(process.get().getJudge()).isEqualTo("Fernando Paes de Campos");
         assertThat(process.get().getShareValue()).isEqualTo("R$ 10.000,00");
@@ -86,7 +89,7 @@ class RetrieveProcessUseCaseTest {
         );
         assertThat(process.get().getMovements()).contains(
                 new Movement(
-                        LocalDate.parse("17/07/2020", DateTimeFormatter.ofPattern("dd/MM/yyy")),
+                        LocalDate.parse("17/07/2020", DATE_FORMATTER),
                         "Guia de Recolhimento Judicial Emitida"
                 )
         );
@@ -123,7 +126,7 @@ class RetrieveProcessUseCaseTest {
         return Map.of(
                 "07108025520188020001", createProcess(
                         "Dano Material",
-                        LocalDateTime.parse("02/05/2018 19:01", DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")),
+                        LocalDateTime.parse("02/05/2018 19:01", DATE_TIME_FORMATTER),
                         "Sorteio",
                         "José Cícero Alves da Silva",
                         "R$ 281.178,42",
@@ -138,14 +141,14 @@ class RetrieveProcessUseCaseTest {
                         ),
                         List.of(
                                 new Movement(
-                                        LocalDate.parse("22/02/2021", DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                                        LocalDate.parse("22/02/2021", DATE_FORMATTER),
                                         "Remetido recurso eletrônico ao Tribunal de Justiça/Turma de recurso"
                                 )
                         )
                 ),
                 "08219015120188120001", createProcess(
                         "Enquadramento",
-                        LocalDateTime.parse("30/07/2018 12:39", DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")),
+                        LocalDateTime.parse("30/07/2018 12:39", DATE_TIME_FORMATTER),
                         "Automática",
                         "Fernando Paes de Campos",
                         "R$ 10.000,00",
@@ -158,7 +161,7 @@ class RetrieveProcessUseCaseTest {
                         ),
                         List.of(
                                 new Movement(
-                                        LocalDate.parse("17/07/2020", DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                                        LocalDate.parse("17/07/2020", DATE_FORMATTER),
                                         "Guia de Recolhimento Judicial Emitida"
                                 )
                         )
