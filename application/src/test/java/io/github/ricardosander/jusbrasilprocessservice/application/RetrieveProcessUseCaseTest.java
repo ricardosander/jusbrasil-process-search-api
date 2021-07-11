@@ -1,17 +1,12 @@
 package io.github.ricardosander.jusbrasilprocessservice.application;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class RetrieveProcessUseCaseTest {
 
@@ -19,12 +14,7 @@ class RetrieveProcessUseCaseTest {
 
     @BeforeEach
     void setUp() {
-
-        Map<String, Process> processes = ProcessFixtureFactory.createProcesses();
-
-        RetrieveProcessGateway retrieveProcessGateway = uniqueProcessNumbering ->
-                Optional.ofNullable(processes.get(uniqueProcessNumbering));
-
+        InMemoryRetrieveProcessGateway retrieveProcessGateway = new InMemoryRetrieveProcessGateway();
         retrieveProcessUseCase = new RetrieveProcessUseCase(retrieveProcessGateway);
     }
 
