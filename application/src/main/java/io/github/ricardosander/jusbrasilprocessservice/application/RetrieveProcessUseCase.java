@@ -34,25 +34,44 @@ class RetrieveProcessUseCase {
             || uniqueProcessNumbering.trim().isEmpty()
             || uniqueProcessNumbering.length() < 14
             || uniqueProcessNumbering.length() > 20
-            || isInvalidTR(uniqueProcessNumbering);
+            || isInvalidTR(uniqueProcessNumbering)
+            || isInvalidJ(uniqueProcessNumbering);
     }
 
     private boolean isNotSupported(String uniqueProcessNumbering) {
+        return isTRNotSupported(uniqueProcessNumbering)
+            || isJNotSupported(uniqueProcessNumbering);
+    }
+
+    private boolean isInvalidTR(String uniqueProcessNumbering) {
+        int tr = extractTR(uniqueProcessNumbering);
+        return tr > 27 && tr != 90;
+    }
+
+    private boolean isInvalidJ(String uniqueProcessNumbering) {
+        return 0 == extractJ(uniqueProcessNumbering);
+    }
+
+    private boolean isTRNotSupported(String uniqueProcessNumbering) {
         int tr = extractTR(uniqueProcessNumbering);
         return tr != 2 && tr != 12;
     }
 
-    private boolean isInvalidTR(String uniqueProcessNumbering) {
-
-        int tr = extractTR(uniqueProcessNumbering);
-
-        return tr > 27 && tr != 90;
+    private boolean isJNotSupported(String uniqueProcessNumbering) {
+        return 8 != extractJ(uniqueProcessNumbering);
     }
 
     private int extractTR(String uniqueProcessNumbering) {
         return Integer.parseInt(uniqueProcessNumbering.substring(
             uniqueProcessNumbering.length() - 6,
             uniqueProcessNumbering.length() - 4
+        ));
+    }
+
+    private int extractJ(String uniqueProcessNumbering) {
+        return Integer.parseInt(uniqueProcessNumbering.substring(
+            uniqueProcessNumbering.length() - 7,
+            uniqueProcessNumbering.length() - 6
         ));
     }
 }
