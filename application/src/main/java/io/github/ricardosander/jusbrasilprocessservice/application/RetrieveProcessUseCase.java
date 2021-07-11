@@ -26,6 +26,8 @@ class RetrieveProcessUseCase {
     }
 
     private boolean isInvalid(String uniqueProcessNumbering) {
-        return uniqueProcessNumbering == null || uniqueProcessNumbering.trim().isEmpty();
+        return uniqueProcessNumbering == null
+            || uniqueProcessNumbering.trim().isEmpty()
+            || uniqueProcessNumbering.length() < 14;
     }
 }
