@@ -37,7 +37,8 @@ class RetrieveProcessUseCase {
             || uniqueProcessNumbering.length() > 20
             || isInvalidTR(uniqueProcessNumbering)
             || isInvalidJ(uniqueProcessNumbering)
-            || isInvalidYear(uniqueProcessNumbering);
+            || isInvalidYear(uniqueProcessNumbering)
+            || isInvalidNumber(uniqueProcessNumbering);
     }
 
     private boolean isNotSupported(String uniqueProcessNumbering) {
@@ -60,6 +61,13 @@ class RetrieveProcessUseCase {
             uniqueProcessNumbering.length() - 7
         ));
         return year < 1889 || year > LocalDate.now().getYear();
+    }
+
+    private boolean isInvalidNumber(String uniqueProcessNumbering) {
+        return 0 == Integer.parseInt(uniqueProcessNumbering.substring(
+            0,
+            uniqueProcessNumbering.length() - 13
+        ));
     }
 
     private boolean isTRNotSupported(String uniqueProcessNumbering) {

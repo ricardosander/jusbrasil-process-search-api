@@ -178,4 +178,13 @@ class RetrieveProcessUseCaseTest {
         assertThatExceptionOfType(InvalidUniqueProcessNumberingException.class)
             .isThrownBy(() -> retrieveProcessUseCase.execute(uniqueProcessNumbering));
     }
+
+    @Test
+    void shouldThrowsInvalidUniqueProcessNumberingException_whenGivenUniqueProcessNumberingHasInvalidNumber() {
+
+        String uniqueProcessNumbering = "00000005120188120001";
+
+        assertThatExceptionOfType(InvalidUniqueProcessNumberingException.class)
+            .isThrownBy(() -> retrieveProcessUseCase.execute(uniqueProcessNumbering));
+    }
 }
