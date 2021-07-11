@@ -49,6 +49,36 @@ class RetrieveProcessUseCaseTest {
     }
 
     @Test
+    void shouldReturnProcess_whenFormattedTJALUniqueProcessNumberingIsGiven() {
+
+        String uniqueProcessNumbering = "0710802-55.2018.8.02.0001";
+
+        Optional<Process> process = retrieveProcessUseCase.execute(uniqueProcessNumbering);
+
+        Process expected = ProcessFixtureFactory.createsTJALProcess();
+
+        assertThat(process)
+            .isPresent()
+            .contains(expected);
+        assertThat(process.get()).isNotSameAs(expected);
+    }
+
+    @Test
+    void shouldReturnProcess_whenFormattedTJMSUniqueProcessNumberingIsGiven() {
+
+        String uniqueProcessNumbering = "0821901-51.2018.8.12.0001";
+
+        Optional<Process> process = retrieveProcessUseCase.execute(uniqueProcessNumbering);
+
+        Process expected = ProcessFixtureFactory.createsTJMSProcess();
+
+        assertThat(process)
+            .isPresent()
+            .contains(expected);
+        assertThat(process.get()).isNotSameAs(expected);
+    }
+
+    @Test
     void shouldThrowsInvalidUniqueProcessNumberingException_whenNullUniqueProcessNumberingIsGiven() {
 
         String uniqueProcessNumbering = null;

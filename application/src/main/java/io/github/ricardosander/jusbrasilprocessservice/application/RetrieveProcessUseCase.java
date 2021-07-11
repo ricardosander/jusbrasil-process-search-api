@@ -11,9 +11,18 @@ class RetrieveProcessUseCase {
     }
 
     public Optional<Process> execute(String uniqueProcessNumbering) {
-        if (isInvalid(uniqueProcessNumbering))
+
+        String sanitizedUniqueProcessNumbering = sanitizeUniqueProcessNumbering(uniqueProcessNumbering);
+
+        if (isInvalid(sanitizedUniqueProcessNumbering))
             throw new InvalidUniqueProcessNumberingException(uniqueProcessNumbering);
-        return retrieveProcessGateway.execute(uniqueProcessNumbering);
+        return retrieveProcessGateway.execute(sanitizedUniqueProcessNumbering);
+    }
+
+    private String sanitizeUniqueProcessNumbering(String originalUniqueProcessNumbering) {
+        return Optional.ofNullable(originalUniqueProcessNumbering)
+            .map(s -> s.replaceAll("\\D", ""))
+            .orElse(null);
     }
 
     private boolean isInvalid(String uniqueProcessNumbering) {
