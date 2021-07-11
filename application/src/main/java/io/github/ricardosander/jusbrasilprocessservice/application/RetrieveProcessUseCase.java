@@ -18,9 +18,9 @@ class RetrieveProcessUseCase {
         if (isInvalid(sanitizedUniqueProcessNumbering))
             throw new InvalidUniqueProcessNumberingException(uniqueProcessNumbering);
 
-        if (isNotSupported(sanitizedUniqueProcessNumbering)) {
+        if (isNotSupported(sanitizedUniqueProcessNumbering))
             throw new NotSupportedUniqueProcessNumberingException(uniqueProcessNumbering);
-        }
+
         return retrieveProcessGateway.execute(sanitizedUniqueProcessNumbering);
     }
 
