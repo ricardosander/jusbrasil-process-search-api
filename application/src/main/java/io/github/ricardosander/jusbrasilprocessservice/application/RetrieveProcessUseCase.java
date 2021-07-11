@@ -16,6 +16,10 @@ class RetrieveProcessUseCase {
 
         if (isInvalid(sanitizedUniqueProcessNumbering))
             throw new InvalidUniqueProcessNumberingException(uniqueProcessNumbering);
+
+        if (isNotSupported(sanitizedUniqueProcessNumbering)) {
+            throw new NotSupportedUniqueProcessNumberingException(uniqueProcessNumbering);
+        }
         return retrieveProcessGateway.execute(sanitizedUniqueProcessNumbering);
     }
 
@@ -29,6 +33,26 @@ class RetrieveProcessUseCase {
         return uniqueProcessNumbering == null
             || uniqueProcessNumbering.trim().isEmpty()
             || uniqueProcessNumbering.length() < 14
-            || uniqueProcessNumbering.length() > 20;
+            || uniqueProcessNumbering.length() > 20
+            || isInvalidTR(uniqueProcessNumbering);
+    }
+
+    private boolean isNotSupported(String uniqueProcessNumbering) {
+        int tr = extractTR(uniqueProcessNumbering);
+        return tr != 2 && tr != 12;
+    }
+
+    private boolean isInvalidTR(String uniqueProcessNumbering) {
+
+        int tr = extractTR(uniqueProcessNumbering);
+
+        return tr > 27 && tr != 90;
+    }
+
+    private int extractTR(String uniqueProcessNumbering) {
+        return Integer.parseInt(uniqueProcessNumbering.substring(
+            uniqueProcessNumbering.length() - 6,
+            uniqueProcessNumbering.length() - 4
+        ));
     }
 }
