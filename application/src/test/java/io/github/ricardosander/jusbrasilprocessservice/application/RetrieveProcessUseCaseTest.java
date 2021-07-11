@@ -36,7 +36,6 @@ class RetrieveProcessUseCaseTest {
         Optional<Process> process = retrieveProcessUseCase.execute(uniqueProcessNumbering);
 
         assertThat(process).isPresent();
-        assertThat(process.get().getId()).isEqualTo(uniqueProcessNumbering);
         assertThat(process.get().getClazz()).isEqualTo("Procedimento Comum Cível");
         assertThat(process.get().getArea()).isEqualTo("Cível");
         assertThat(process.get().getSubject()).isEqualTo("Dano Material");
@@ -70,7 +69,6 @@ class RetrieveProcessUseCaseTest {
         Optional<Process> process = retrieveProcessUseCase.execute(uniqueProcessNumbering);
 
         assertThat(process).isPresent();
-        assertThat(process.get().getId()).isEqualTo(uniqueProcessNumbering);
         assertThat(process.get().getClazz()).isEqualTo("Procedimento Comum Cível");
         assertThat(process.get().getArea()).isEqualTo("Cível");
         assertThat(process.get().getSubject()).isEqualTo("Enquadramento");
@@ -124,7 +122,6 @@ class RetrieveProcessUseCaseTest {
     private Map<String, Process> createProcesses() {
         return Map.of(
                 "07108025520188020001", createProcess(
-                        "07108025520188020001",
                         "Dano Material",
                         LocalDateTime.parse("02/05/2018 19:01", DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")),
                         "Sorteio",
@@ -147,7 +144,6 @@ class RetrieveProcessUseCaseTest {
                         )
                 ),
                 "08219015120188120001", createProcess(
-                        "08219015120188120001",
                         "Enquadramento",
                         LocalDateTime.parse("30/07/2018 12:39", DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")),
                         "Automática",
@@ -171,7 +167,6 @@ class RetrieveProcessUseCaseTest {
     }
 
     private Process createProcess(
-            String id,
             String subject,
             LocalDateTime distributionDate,
             String distributionType,
@@ -181,7 +176,6 @@ class RetrieveProcessUseCaseTest {
             List<Movement> movements
     ) {
         return new Process(
-                id,
                 "Procedimento Comum Cível",
                 "Cível",
                 subject,

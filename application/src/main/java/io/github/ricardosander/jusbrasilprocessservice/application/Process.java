@@ -5,7 +5,6 @@ import java.util.Objects;
 
 class Process {
 
-    private final String id;
     private final String clazz;
     private final String area;
     private final String subject;
@@ -16,7 +15,6 @@ class Process {
     private final List<Movement> movements;
 
     public Process(
-            String id,
             String clazz,
             String area,
             String subject,
@@ -26,7 +24,6 @@ class Process {
             List<ProcessPart> processParts,
             List<Movement> movements
     ) {
-        this.id = id;
         this.clazz = clazz;
         this.area = area;
         this.subject = subject;
@@ -35,10 +32,6 @@ class Process {
         this.shareValue = shareValue;
         this.processParts = processParts;
         this.movements = movements;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public String getClazz() {
@@ -78,8 +71,7 @@ class Process {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Process process = (Process) o;
-        return Objects.equals(id, process.id)
-                && Objects.equals(clazz, process.clazz)
+        return Objects.equals(clazz, process.clazz)
                 && Objects.equals(area, process.area)
                 && Objects.equals(subject, process.subject)
                 && Objects.equals(distributionDate, process.distributionDate)
@@ -91,6 +83,6 @@ class Process {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, clazz, area, subject, distributionDate, judge, shareValue, processParts, movements);
+        return Objects.hash(clazz, area, subject, distributionDate, judge, shareValue, processParts, movements);
     }
 }
