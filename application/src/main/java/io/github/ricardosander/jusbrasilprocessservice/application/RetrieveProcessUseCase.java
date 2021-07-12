@@ -1,5 +1,8 @@
 package io.github.ricardosander.jusbrasilprocessservice.application;
 
+import io.github.ricardosander.jusbrasilprocessservice.domain.InvalidUniqueProcessNumberingException;
+import io.github.ricardosander.jusbrasilprocessservice.domain.NotSupportedUniqueProcessNumberingException;
+
 import java.time.LocalDate;
 import java.util.Optional;
 

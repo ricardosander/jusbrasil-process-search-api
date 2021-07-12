@@ -3,6 +3,8 @@ package io.github.ricardosander.jusbrasilprocessservice.application;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
+import io.github.ricardosander.jusbrasilprocessservice.domain.InvalidUniqueProcessNumberingException;
+import io.github.ricardosander.jusbrasilprocessservice.domain.NotSupportedUniqueProcessNumberingException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
