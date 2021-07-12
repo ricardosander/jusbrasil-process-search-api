@@ -15,8 +15,7 @@ class RetrieveProcessUseCase {
 
   public Optional<Process> execute(String uniqueProcessNumbering) {
 
-    UniqueProcessNumbering upn =
-        new UniqueProcessNumberingFactory().create(uniqueProcessNumbering);
+    UniqueProcessNumbering upn = UniqueProcessNumberingFactory.create(uniqueProcessNumbering);
 
     return retrieveProcessGateway.execute(upn);
   }
