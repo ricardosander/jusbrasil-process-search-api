@@ -1,4 +1,4 @@
-package io.github.ricardosander.jusbrasilprocessservice.domain;
+package io.github.ricardosander.jusbrasilprocessservice.uniqueprocessnumbering;
 
 public class NotSupportedUniqueProcessNumberingException extends RuntimeException {
 

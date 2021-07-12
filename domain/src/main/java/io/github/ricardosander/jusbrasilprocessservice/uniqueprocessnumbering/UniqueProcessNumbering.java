@@ -1,10 +1,10 @@
-package io.github.ricardosander.jusbrasilprocessservice.domain;
+package io.github.ricardosander.jusbrasilprocessservice.uniqueprocessnumbering;
 
 public class UniqueProcessNumbering {
 
   private final String value;
 
-  public UniqueProcessNumbering(String uniqueProcessNumbering) {
+  UniqueProcessNumbering(String uniqueProcessNumbering) {
     value = uniqueProcessNumbering;
   }
 
