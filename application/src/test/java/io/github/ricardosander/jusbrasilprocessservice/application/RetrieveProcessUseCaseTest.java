@@ -3,6 +3,8 @@ package io.github.ricardosander.jusbrasilprocessservice.application;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
+import io.github.ricardosander.jusbrasilprocessservice.uniqueprocessnumbering.InvalidUniqueProcessNumberingException;
+import io.github.ricardosander.jusbrasilprocessservice.uniqueprocessnumbering.NotSupportedUniqueProcessNumberingException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -127,7 +129,7 @@ class RetrieveProcessUseCaseTest {
     @Test
     void shouldThrowsInvalidUniqueProcessNumberingException_whenGivenUniqueProcessNumberingHasInvalidTR() {
 
-        String uniqueProcessNumbering = "08219015120188280001";
+        String uniqueProcessNumbering = "08219010720188280001";
 
         assertThatExceptionOfType(InvalidUniqueProcessNumberingException.class)
             .isThrownBy(() -> retrieveProcessUseCase.execute(uniqueProcessNumbering));
@@ -145,7 +147,7 @@ class RetrieveProcessUseCaseTest {
     @Test
     void shouldThrowsInvalidUniqueProcessNumberingException_whenGivenUniqueProcessNumberingJIsInvalid() {
 
-        String uniqueProcessNumbering = "08219015120180120001";
+        String uniqueProcessNumbering = "08219012020180120001";
 
         assertThatExceptionOfType(InvalidUniqueProcessNumberingException.class)
             .isThrownBy(() -> retrieveProcessUseCase.execute(uniqueProcessNumbering));
@@ -164,7 +166,7 @@ class RetrieveProcessUseCaseTest {
     void shouldThrowsInvalidUniqueProcessNumberingException_whenGivenUniqueProcessNumberingJIHasFutureYear() {
 
         int futureYear = LocalDate.now().getYear() + 1;
-        String uniqueProcessNumbering = String.format("082190151%s8120001", futureYear);
+        String uniqueProcessNumbering = String.format("082190112%s8120001", futureYear);
 
         assertThatExceptionOfType(InvalidUniqueProcessNumberingException.class)
             .isThrownBy(() -> retrieveProcessUseCase.execute(uniqueProcessNumbering));
@@ -173,7 +175,7 @@ class RetrieveProcessUseCaseTest {
     @Test
     void shouldThrowsInvalidUniqueProcessNumberingException_whenGivenUniqueProcessNumberingJIHasYearBeforeRepublic() {
 
-        String uniqueProcessNumbering = "08219015118888120001";
+        String uniqueProcessNumbering = "08219010918888120001";
 
         assertThatExceptionOfType(InvalidUniqueProcessNumberingException.class)
             .isThrownBy(() -> retrieveProcessUseCase.execute(uniqueProcessNumbering));
@@ -182,7 +184,7 @@ class RetrieveProcessUseCaseTest {
     @Test
     void shouldThrowsInvalidUniqueProcessNumberingException_whenGivenUniqueProcessNumberingHasInvalidNumber() {
 
-        String uniqueProcessNumbering = "00000005120188120001";
+        String uniqueProcessNumbering = "00000006020188120001";
 
         assertThatExceptionOfType(InvalidUniqueProcessNumberingException.class)
             .isThrownBy(() -> retrieveProcessUseCase.execute(uniqueProcessNumbering));

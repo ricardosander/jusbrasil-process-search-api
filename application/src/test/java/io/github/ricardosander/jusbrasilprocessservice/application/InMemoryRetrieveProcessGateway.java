@@ -1,5 +1,7 @@
 package io.github.ricardosander.jusbrasilprocessservice.application;
 
+import io.github.ricardosander.jusbrasilprocessservice.uniqueprocessnumbering.UniqueProcessNumbering;
+
 import java.util.Map;
 import java.util.Optional;
 
@@ -12,7 +14,7 @@ class InMemoryRetrieveProcessGateway implements RetrieveProcessGateway {
   }
 
   @Override
-  public Optional<Process> execute(String uniqueProcessNumbering) {
-    return Optional.ofNullable(processes.get(uniqueProcessNumbering));
+  public Optional<Process> execute(UniqueProcessNumbering uniqueProcessNumbering) {
+    return Optional.ofNullable(processes.get(uniqueProcessNumbering.getValue()));
   }
 }
