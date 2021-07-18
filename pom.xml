@@ -18,6 +18,7 @@
         <module>application</module>
         <module>domain</module>
         <module>adapter</module>
+        <module>main</module>
     </modules>
 
     <properties>
