@@ -1,4 +1,4 @@
-package io.github.ricardosander.jusbrasilprocessservice.configuration.web;
+package io.github.ricardosander.jusbrasilprocessservice.main.configuration.web;
 
 import io.github.ricardosander.jusbrasilprocessservice.web.WebExceptionHandler;
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-package io.github.ricardosander.jusbrasilprocessservice.configuration.gateways;
+package io.github.ricardosander.jusbrasilprocessservice.main.configuration.gateways;
 
 import io.github.ricardosander.jusbrasilprocessservice.application.RetrieveProcessGateway;
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-package io.github.ricardosander.jusbrasilprocessservice.configuration.usecases;
+package io.github.ricardosander.jusbrasilprocessservice.main.configuration.usecases;
 
 import io.github.ricardosander.jusbrasilprocessservice.application.RetrieveProcessGateway;
 import io.github.ricardosander.jusbrasilprocessservice.application.RetrieveProcessUseCase;
