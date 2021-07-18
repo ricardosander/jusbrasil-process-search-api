@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RetrieveProcessGatewayConfiguration {
 
-    @Bean
+    @Bean(name = "mainRetrieveProcessGateway")
     public RetrieveProcessGateway retrieveProcessGateway() {
         return new InMemoryRetrieveProcessGateway();
     }
