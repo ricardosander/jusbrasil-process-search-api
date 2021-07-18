@@ -1,36 +1,15 @@
 package io.github.ricardosander.jusbrasilprocessservice.application;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+
 import java.time.LocalDateTime;
-import java.util.Objects;
 
+@Getter
+@EqualsAndHashCode
+@AllArgsConstructor
 class DistributionDate {
-
-    private final LocalDateTime data;
+    private final LocalDateTime date;
     private final String type;
-
-    public DistributionDate(LocalDateTime data, String type) {
-        this.data = data;
-        this.type = type;
-    }
-
-    public LocalDateTime getData() {
-        return data;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        DistributionDate that = (DistributionDate) o;
-        return Objects.equals(data, that.data) && Objects.equals(type, that.type);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(data, type);
-    }
 }
