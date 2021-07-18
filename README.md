@@ -1,5 +1,17 @@
 # jusbrasil-process-search-api
 
+## Como executar esse projeto
+
+### Rodando Local
+Para rodar localmene, você precisará das seguintes dependências:
+
+- Java 11+
+- Maven 3.6.0+
+
+Então basta rodar o seguinte comando:
+
+`mvn -pl main -am spring-boot:run`
+
 ## Objetivos do Projeto
 
 - implementação do [Desafio Backend Enginner - Jusbrasil](https://gist.github.com/tarsisazevedo/966d469e8a80741334d3c4dce66cbea5);
