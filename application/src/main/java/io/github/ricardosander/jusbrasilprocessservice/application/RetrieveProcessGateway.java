@@ -4,6 +4,6 @@ import io.github.ricardosander.jusbrasilprocessservice.uniqueprocessnumbering.Un
 
 import java.util.Optional;
 
-interface RetrieveProcessGateway {
+public interface RetrieveProcessGateway {
     Optional<Process> execute(UniqueProcessNumbering uniqueProcessNumbering);
 }

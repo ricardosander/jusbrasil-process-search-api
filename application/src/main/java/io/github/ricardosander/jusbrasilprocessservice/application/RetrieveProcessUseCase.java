@@ -5,7 +5,7 @@ import io.github.ricardosander.jusbrasilprocessservice.uniqueprocessnumbering.Un
 
 import java.util.Optional;
 
-class RetrieveProcessUseCase {
+public class RetrieveProcessUseCase {
 
   private final RetrieveProcessGateway retrieveProcessGateway;
 
