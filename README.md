@@ -12,6 +12,39 @@ Então basta rodar o seguinte comando:
 
 `mvn -pl main -am spring-boot:run`
 
+### Rodando o projeto com cache local
+
+O projeto suporta cache local (em memória da própria aplicação). As seguintes configurações podem ser alteradas via 
+parâmetros:
+
+- `cache.local.enabled`: ativa o cache local (padrão false).
+- `cache.local.maximumSize`: configura o tamanho total do cache (padrão 1000).
+- `cache.local.ttlInMinutes`: configura o tempo de cache (padrão 60).
+
+Exemplo: 
+`mvn -pl main -am spring-boot:run -Dspring-boot.run.arguments="--cache.local.enabled=true --cache.local.ttlInMinutes=1"`
+
+### Rodando o projeto com cache distribuído
+
+O projeto suporta cache distribúido (Redis). As seguintes configurações podem ser alteradas via parâmetros:
+
+- `cache.cloud.enabled`: ativa o cache distribuído (padrão false).
+- `cache.cloud.host`: endereço do host Redis. (padrão localhost).
+- `cache.cloud.port`: porta do host Redis (padrão 6379).
+- `cache.cloud.ttlInMinutes`: configura o tempo de cache (padrão 60).
+- `cache.cloud.reconnectionDelayInSeconds`: configura o tempo entre tentativas de conexão com o host (padrão 5).
+
+Exemplo:
+`mvn -pl main -am spring-boot:run -Dspring-boot.run.arguments="--cache.cloud.enabled=true --cache.cloud.ttlInMinutes=2"`
+
+### Rodando o projeto com cache combinado (local e distribuído)
+
+O projeto também suporta a combinação de cache local e distribuído (Redis), basta ativar os dois cache, como citado 
+nos itens anteriores. Quando os dois cache são ativados, o serviço irá procurar primeiramente no cache local e após 
+isso no cache distribuído.
+
+`mvn -pl main -am spring-boot:run -Dspring-boot.run.arguments="--cache.local.enabled=true --cache.cloud.enabled=true"`
+
 ## Objetivos do Projeto
 
 - implementação do [Desafio Backend Enginner - Jusbrasil](https://gist.github.com/tarsisazevedo/966d469e8a80741334d3c4dce66cbea5);
