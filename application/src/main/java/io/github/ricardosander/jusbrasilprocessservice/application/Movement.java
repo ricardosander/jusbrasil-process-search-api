@@ -4,12 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Getter
 @EqualsAndHashCode
 @AllArgsConstructor
-class Movement {
+class Movement implements Serializable {
     private final LocalDate date;
     private final String description;
 }

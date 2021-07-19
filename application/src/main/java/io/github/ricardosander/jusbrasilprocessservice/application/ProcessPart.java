@@ -4,10 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
+import java.io.Serializable;
+
 @Getter
 @EqualsAndHashCode
 @AllArgsConstructor
-class ProcessPart {
+class ProcessPart implements Serializable {
     private final String type;
     private final String subType;
     private final String part;
