@@ -1,4 +1,4 @@
-package io.github.ricardosander.jusbrasilprocessservice.gateway;
+package io.github.ricardosander.jusbrasilprocessservice.cache;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,8 +1,8 @@
 package io.github.ricardosander.jusbrasilprocessservice.main.configuration.cache;
 
 import io.github.ricardosander.jusbrasilprocessservice.application.RetrieveProcessGateway;
-import io.github.ricardosander.jusbrasilprocessservice.gateway.LocalCacheConfigurationProperties;
-import io.github.ricardosander.jusbrasilprocessservice.gateway.LocalCacheRetrieveProcessGateway;
+import io.github.ricardosander.jusbrasilprocessservice.cache.LocalCacheConfigurationProperties;
+import io.github.ricardosander.jusbrasilprocessservice.cache.LocalCacheRetrieveProcessGateway;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
