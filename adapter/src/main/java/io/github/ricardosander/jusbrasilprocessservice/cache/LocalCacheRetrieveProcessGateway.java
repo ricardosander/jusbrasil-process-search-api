@@ -35,7 +35,7 @@ public class LocalCacheRetrieveProcessGateway implements RetrieveProcessGateway 
     @Override
     public Optional<Process> execute(UniqueProcessNumbering uniqueProcessNumbering) {
         try {
-            LOGGER.info("Local cache");
+            LOGGER.info("Searching process {} in local cache", uniqueProcessNumbering.getValue());
             return this.cache.get(uniqueProcessNumbering.getValue(), () -> retrieveProcessGateway.execute(uniqueProcessNumbering));
         } catch (ExecutionException e) {
             LOGGER.error("Error on local cache: {}", e.getMessage(), e);

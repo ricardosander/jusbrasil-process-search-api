@@ -1,7 +1,7 @@
 package io.github.ricardosander.jusbrasilprocessservice.main.configuration.cache;
 
 import io.github.ricardosander.jusbrasilprocessservice.application.RetrieveProcessGateway;
-import io.github.ricardosander.jusbrasilprocessservice.gateway.CloudCacheRetrieveProcessGateway;
+import io.github.ricardosander.jusbrasilprocessservice.cache.CloudCacheRetrieveProcessGateway;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.cache.CacheManager;
