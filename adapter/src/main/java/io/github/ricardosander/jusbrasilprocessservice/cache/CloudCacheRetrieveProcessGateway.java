@@ -1,4 +1,4 @@
-package io.github.ricardosander.jusbrasilprocessservice.gateway;
+package io.github.ricardosander.jusbrasilprocessservice.cache;
 
 import io.github.ricardosander.jusbrasilprocessservice.application.Process;
 import io.github.ricardosander.jusbrasilprocessservice.application.RetrieveProcessGateway;
