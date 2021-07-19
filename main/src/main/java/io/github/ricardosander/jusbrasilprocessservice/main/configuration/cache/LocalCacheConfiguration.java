@@ -5,7 +5,7 @@ import io.github.ricardosander.jusbrasilprocessservice.cache.LocalCacheConfigura
 import io.github.ricardosander.jusbrasilprocessservice.cache.LocalCacheRetrieveProcessGateway;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -14,14 +14,22 @@ import org.springframework.context.annotation.Primary;
 public class LocalCacheConfiguration {
 
     @Bean
-    @Primary
-    @ConditionalOnProperty(
-            value = "cache.local.enabled",
-            havingValue = "true"
-    )
+    @ConditionalOnExpression("${cache.local.enabled} == true and ${cache.cloud.enabled} == false")
     public RetrieveProcessGateway retrieveProcessGateway(
             LocalCacheConfigurationProperties configuration,
             @Qualifier("mainRetrieveProcessGateway") RetrieveProcessGateway retrieveProcessGateway) {
+        return new LocalCacheRetrieveProcessGateway(
+                configuration,
+                retrieveProcessGateway
+        );
+    }
+
+    @Bean
+    @Primary
+    @ConditionalOnExpression("${cache.local.enabled} == true and ${cache.cloud.enabled} == true")
+    public RetrieveProcessGateway localCacheRetrieveProcessGateway(
+            LocalCacheConfigurationProperties configuration,
+            @Qualifier("cloudCacheRetrieveProcessGateway") RetrieveProcessGateway retrieveProcessGateway) {
         return new LocalCacheRetrieveProcessGateway(
                 configuration,
                 retrieveProcessGateway
