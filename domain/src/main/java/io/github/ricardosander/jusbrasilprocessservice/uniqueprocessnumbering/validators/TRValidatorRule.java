@@ -1,4 +1,6 @@
-package io.github.ricardosander.jusbrasilprocessservice.uniqueprocessnumbering;
+package io.github.ricardosander.jusbrasilprocessservice.uniqueprocessnumbering.validators;
+
+import io.github.ricardosander.jusbrasilprocessservice.uniqueprocessnumbering.NotSupportedUniqueProcessNumberingException;
 
 class TRValidatorRule extends ValidatorBaseRule {
 

@@ -1,5 +1,8 @@
 package io.github.ricardosander.jusbrasilprocessservice.uniqueprocessnumbering;
 
+import io.github.ricardosander.jusbrasilprocessservice.uniqueprocessnumbering.validators.ValidatorRule;
+import io.github.ricardosander.jusbrasilprocessservice.uniqueprocessnumbering.validators.ValidatorRuleFactory;
+
 public class UniqueProcessNumberingFactory {
 
   private static final ValidatorRule HANDLER = ValidatorRuleFactory.getInstance().getRule();

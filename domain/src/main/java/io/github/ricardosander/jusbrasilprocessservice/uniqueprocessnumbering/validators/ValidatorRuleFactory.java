@@ -1,6 +1,6 @@
-package io.github.ricardosander.jusbrasilprocessservice.uniqueprocessnumbering;
+package io.github.ricardosander.jusbrasilprocessservice.uniqueprocessnumbering.validators;
 
-class ValidatorRuleFactory {
+public class ValidatorRuleFactory {
 
   private static ValidatorRuleFactory instance;
 
