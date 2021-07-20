@@ -1,4 +1,4 @@
-package io.github.ricardosander.jusbrasilprocessservice.application;
+package io.github.ricardosander.jusbrasilprocessservice.process;
 
 import io.github.ricardosander.jusbrasilprocessservice.uniqueprocessnumbering.UniqueProcessNumbering;
 import io.github.ricardosander.jusbrasilprocessservice.uniqueprocessnumbering.UniqueProcessNumberingFactory;

@@ -1,4 +1,4 @@
-package io.github.ricardosander.jusbrasilprocessservice.application;
+package io.github.ricardosander.jusbrasilprocessservice.process;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
