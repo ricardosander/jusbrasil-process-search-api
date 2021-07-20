@@ -1,7 +1,7 @@
 package io.github.ricardosander.jusbrasilprocessservice.main.configuration.gateways;
 
-import io.github.ricardosander.jusbrasilprocessservice.application.Process;
-import io.github.ricardosander.jusbrasilprocessservice.application.RetrieveProcessGateway;
+import io.github.ricardosander.jusbrasilprocessservice.process.Process;
+import io.github.ricardosander.jusbrasilprocessservice.process.RetrieveProcessGateway;
 import io.github.ricardosander.jusbrasilprocessservice.uniqueprocessnumbering.UniqueProcessNumbering;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

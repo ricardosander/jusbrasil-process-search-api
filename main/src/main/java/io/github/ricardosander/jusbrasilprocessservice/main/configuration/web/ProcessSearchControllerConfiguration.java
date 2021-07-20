@@ -1,6 +1,6 @@
 package io.github.ricardosander.jusbrasilprocessservice.main.configuration.web;
 
-import io.github.ricardosander.jusbrasilprocessservice.application.RetrieveProcessUseCase;
+import io.github.ricardosander.jusbrasilprocessservice.process.RetrieveProcessUseCase;
 import io.github.ricardosander.jusbrasilprocessservice.web.ProcessSearchController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

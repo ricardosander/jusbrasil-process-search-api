@@ -1,7 +1,7 @@
 package io.github.ricardosander.jusbrasilprocessservice.web;
 
-import io.github.ricardosander.jusbrasilprocessservice.application.Process;
-import io.github.ricardosander.jusbrasilprocessservice.application.RetrieveProcessUseCase;
+import io.github.ricardosander.jusbrasilprocessservice.process.Process;
+import io.github.ricardosander.jusbrasilprocessservice.process.RetrieveProcessUseCase;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;

@@ -2,8 +2,8 @@ package io.github.ricardosander.jusbrasilprocessservice.cache;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import io.github.ricardosander.jusbrasilprocessservice.application.Process;
-import io.github.ricardosander.jusbrasilprocessservice.application.RetrieveProcessGateway;
+import io.github.ricardosander.jusbrasilprocessservice.process.Process;
+import io.github.ricardosander.jusbrasilprocessservice.process.RetrieveProcessGateway;
 import io.github.ricardosander.jusbrasilprocessservice.uniqueprocessnumbering.UniqueProcessNumbering;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

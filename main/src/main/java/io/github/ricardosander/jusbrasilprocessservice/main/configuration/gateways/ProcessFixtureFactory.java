@@ -1,6 +1,6 @@
 package io.github.ricardosander.jusbrasilprocessservice.main.configuration.gateways;
 
-import io.github.ricardosander.jusbrasilprocessservice.application.Process;
+import io.github.ricardosander.jusbrasilprocessservice.process.Process;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

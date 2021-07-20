@@ -1,6 +1,6 @@
 package io.github.ricardosander.jusbrasilprocessservice.main.configuration.gateways;
 
-import io.github.ricardosander.jusbrasilprocessservice.application.RetrieveProcessGateway;
+import io.github.ricardosander.jusbrasilprocessservice.process.RetrieveProcessGateway;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
