@@ -1,7 +1,4 @@
-package io.github.ricardosander.jusbrasilprocessservice.application;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+package io.github.ricardosander.jusbrasilprocessservice.process;
 
 import io.github.ricardosander.jusbrasilprocessservice.uniqueprocessnumbering.InvalidUniqueProcessNumberingException;
 import io.github.ricardosander.jusbrasilprocessservice.uniqueprocessnumbering.NotSupportedUniqueProcessNumberingException;
@@ -10,6 +7,9 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.Optional;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class RetrieveProcessUseCaseTest {
 

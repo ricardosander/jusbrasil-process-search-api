@@ -1,4 +1,4 @@
-package io.github.ricardosander.jusbrasilprocessservice.application;
+package io.github.ricardosander.jusbrasilprocessservice.process;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
