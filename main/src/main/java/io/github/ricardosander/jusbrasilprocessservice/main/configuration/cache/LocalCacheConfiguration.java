@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Primary;
 public class LocalCacheConfiguration {
 
     @Bean
+    @Primary
     @ConditionalOnExpression("${cache.local.enabled} == true and ${cache.cloud.enabled} == false")
     public RetrieveProcessGateway retrieveProcessGateway(
             LocalCacheConfigurationProperties configuration,
